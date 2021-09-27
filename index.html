@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>números</title>
+    <style>
+      h1 {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Sorteador de números</h1>
+
+    <h3>Sortear um número entre:</h3>
+    <input id="minimo" type="number" />
+    e
+    <input id="maximo" type="number" />
+
+    <button id="botao" onclick="sortear()">Sortear</button>
+    <h3 id="resultado"></h3>
+
+    <div class="resultado"></div>
+    
+    <script>
+      const botao = document.querySelector("#botao");
+
+      async function sortear() {
+        const min = document.getElementById("minimo").value;
+        const max = document.getElementById("maximo").value;
+
+        const array = [min, max];
+
+        const result = await fetch("http://localhost:1234/numeros", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(array),
+        });
+      }
+    </script>
+  </body>
+</html>
