@@ -1,32 +1,16 @@
-const fs = require('fs');
 const express = require('express');
-const nunjucks = require('nunjucks');
 
-const Migration = require('./migration');
-const { db } = require('./db');
-const { sorteio } = require('./models/index')
-const { readLast } = require('./models/read')
+const {
+    sorteio
+} = require('./models/index')
+const {
+    readLast
+} = require('./models/read')
+
+const app = express.Router()
+
 
 const app = express()
-
-app.use(express.json())
-
-app.use(express.static('public'));
-
-app.set('view engine', 'njk');
-
-nunjucks.configure('src/views', {
-  express: app,
-  autoescape: true,
-  noCache: true,
-});
-
-(async () => {
-  if (!fs.existsSync(db)) {
-    await Migration.up();
-  }
-})();
-
 
 app.use(express.json())
 
@@ -73,5 +57,6 @@ app.get('/readLast', async (req, res) => {
 
 
 
-
-app.listen(1234, () => console.log(`servidor rodando em: http://localhost:1234`))
+module.exports = {
+    app
+}

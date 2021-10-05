@@ -23,25 +23,10 @@
     <button id="botao" onclick="sortear()">Sortear</button>
     <h3 id="resultado"></h3>
 
-    <div class="resultado"></div>
-    
-    <script>
-      const botao = document.querySelector("#botao");
+    <div class="resultado">
+      <p id="resultP"></p>
+    </div>
 
-      async function sortear() {
-        const min = document.getElementById("minimo").value;
-        const max = document.getElementById("maximo").value;
-
-        const array = [min, max];
-
-        const result = await fetch("http://localhost:1234/numeros", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(array),
-        });
-      }
-    </script>
+    <script src="/js/index.js"></script>
   </body>
 </html>
