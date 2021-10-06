@@ -6,7 +6,7 @@ const Migration = require('./migration');
 const { db } = require('./db');
 
 const routes = require('./routes')
-const app = express()
+const app = express();
 
 
 (async () => {
