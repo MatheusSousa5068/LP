@@ -1,5 +1,4 @@
-const { sorteio } = require('../models/index')
-const { readLast } = require('../models/read')
+const { sorteio, readLast } = require('../models/index')
 
 
 const sorteioNum = async (req, res) => {

@@ -1,5 +1,5 @@
 body {
-  background-color: #a2cbff;
+  background-color: #0ef3f3
 }
 
 main {
@@ -35,7 +35,7 @@ p {
   justify-content: center;
   align-items: center;
 
-  color: #f70000;
+  color: #000;
   font-size: 32px;
   font-weight: 300;
 }
