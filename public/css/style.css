@@ -1,0 +1,41 @@
+body {
+  background-color: #a2cbff;
+}
+
+main {
+  transform: translateY(115%);
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+#sorteio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+h3 {
+  margin-left: 2px;
+}
+
+.sorteador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #f70000;
+  font-size: 32px;
+  font-weight: 300;
+}

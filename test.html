@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>números</title>
+    <style>
+      * {
+        justify-content: center;
+      }
+
+      body {
+        position: relative;
+        top: 50%;
+        transform: translateY(105%);
+      }
+
+      h1 {
+        display: flex;
+        justify-content: center;
+      }
+
+      .main {
+      }
+
+      #sorteio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      input,
+      h3 {
+        margin-left: 2px;
+      }
+
+      .sorteador {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 25px;
+      }
+
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>Sorteador de números</h1>
+
+      <div id="sorteio">
+        <h3>Sortear um número entre:</h3>
+        <br />
+
+        <div class="values">
+          <input id="minimo" type="number" />
+          e
+          <input id="maximo" type="number" />
+        </div>
+      </div>
+
+      <div class="sorteador">
+        <button id="botao" onclick="sortear()">Sortear</button>
+      </div>
+      
+      <p id="resultP">soi</p>
+    </div>
+  </body>
+</html>
