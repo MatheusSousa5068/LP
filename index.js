@@ -1,6 +1,5 @@
 const fs = require('fs');
 const express = require('express');
-const nunjucks = require('nunjucks');
 
 const Migration = require('./migration');
 const { db } = require('./db');

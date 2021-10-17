@@ -21,7 +21,7 @@ async function up() {
 
   const sql3 = `
     CREATE TABLE IF NOT EXISTS realiza (
-      id INTEGER,
+      id TEXT,
       email TEXT,
       FOREIGN KEY (id) REFERENCES sorteio(id),
       FOREIGN KEY (email) REFERENCES usuario(email)
