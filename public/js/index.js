@@ -44,7 +44,7 @@ async function read() {
     const resultP = document.getElementById("resultP")
 
     resultP.innerText = pedidos[0].resultado
-    console.log(pedidos[0])
+    console.log(`O resultado foi: ${pedidos[0].resultado}`)
 }
 
 

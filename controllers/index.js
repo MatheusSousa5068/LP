@@ -3,6 +3,7 @@ const {
     readLast,
     readLastId
 } = require('../models/index')
+
 const {
     create,
     verification
@@ -33,7 +34,7 @@ const sorteioNum = async (req, res) => {
 
 
     const idJson = await readLastId()
-    if (idJson == false) {
+    if (!idJson) {
         const id = 0
 
         sorteio(tipo, sort, id, email)
