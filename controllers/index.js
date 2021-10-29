@@ -139,10 +139,17 @@ const login = async (req, res) => {
     }
 }
 
+const image = async (req, res) => {
+    const image = req.file
+    console.log(image)
+
+    res.status(200).send('Imagem recebida')
+}
 
 module.exports = {
     sorteioNum,
     readLastNumber,
     signup,
-    login
+    login,
+    image
 }
