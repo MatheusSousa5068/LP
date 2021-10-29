@@ -21,17 +21,24 @@ async function sortear() {
     const max = document.getElementById("maximo").value;
     const email = localStorage.getItem('@Sorteador:email')
 
-    const array = [min, max, email];
 
-    const result = await fetch("http://localhost:1234/numeros", {
-        method: "POST",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(array),
-    });
+    console.log(min, max)
+    if (Number(max) > Number(min)) {
+        const array = [min, max, email];
+        const result = await fetch("http://localhost:1234/numeros", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(array),
+        });
 
-    read()
+        read()
+    } else {
+        alert('O máximo deve ser o maior número')
+    }
+
+
 }
 
 async function read() {

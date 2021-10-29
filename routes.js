@@ -1,7 +1,11 @@
 const express = require('express')
 const routes = express.Router()
 
-const { sorteioNum, readLastNumber, signup, login } = require('./controllers')
+const path = require('path')
+const multer = require('multer');
+const upload = multer({ dest: path.resolve(__dirname, 'uploads') });
+
+const { sorteioNum, readLastNumber, signup, login} = require('./controllers')
 
 routes.use(express.json())
 
@@ -27,14 +31,17 @@ routes.get('/login', (req, res) => {
     res.sendFile(`${__dirname}/login.html`)
 })
 
+routes.get('/readLast', readLastNumber)
 
 // método post
 routes.post('/numeros', sorteioNum)
 
-routes.get('/readLast', readLastNumber)
-
-routes.post('/signup', signup)
+routes.post('/signup', upload.single('image'), signup)
 
 routes.post('/login', login)
+
+routes.use((error, req, res, next) => {
+    res.json({ error: error.message });
+})
 
 module.exports = routes

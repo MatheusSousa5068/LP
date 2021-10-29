@@ -9,10 +9,12 @@ const {
     verification
 } = require('../models/user')
 
+const SMTP_CONFIG = require('../config/smtp')
+
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
+const nodemailer = require('nodemailer')
 
 const sorteioNum = async (req, res) => {
     const request = req.body
@@ -32,9 +34,11 @@ const sorteioNum = async (req, res) => {
         sort = Math.floor(Math.random() * Math.floor(max));
     }
 
+    console.log(sort)
 
     const idJson = await readLastId()
-    if (!idJson) {
+    console.log(idJson)
+    if (idJson == []) {
         const id = 0
 
         sorteio(tipo, sort, id, email)
@@ -60,26 +64,42 @@ const readLastNumber = async (req, res) => {
 }
 
 const signup = async (req, res) => {
-    const user = req.body
+    const {
+        email,
+        nome,
+        senha
+    } = req.body
 
 
-
-    const email = user[0]
-    const nome = user[1]
-    const senha = user[2]
 
 
     try {
         await create(email, nome, senha)
 
-        res.json({
-            message: "usuário criado com sucesso"
+
+        const transporter = nodemailer.createTransport({
+            host: SMTP_CONFIG.host,
+            port: SMTP_CONFIG.port,
+            secure: false,
+            auth: {
+                user: SMTP_CONFIG.user,
+                pass: SMTP_CONFIG.pass
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
         })
 
-    } catch (err) {
-        res.json({
-            message: `erro ao criar usuário - ${err}`
+        const mailSent = await transporter.sendMail({
+            text: `Obrigado, ${nome} por se cadastrar em nosso site`,
+            subject: 'Confirmação de cadastro',
+            from: SMTP_CONFIG.user,
+            to: [String(email)]
         })
+        console.log(mailSent)
+        
+    } catch (err) {
+        throw new Error('Erro ao criar usuário: ' + err)
     }
 }
 
@@ -97,9 +117,7 @@ const login = async (req, res) => {
         const match = await bcrypt.compare(senha, user.senha)
 
         if (!match) {
-            res.json({
-                erro: "senha incorreta"
-            })
+            throw new Error('Senha incorreta')
         }
 
         const token = jwt.sign({
@@ -116,9 +134,7 @@ const login = async (req, res) => {
 
     } else {
 
-        res.json({
-            erro: "usuário não encontrado"
-        })
+        throw new Error('Usuário não encontrado.')
 
     }
 }
