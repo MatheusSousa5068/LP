@@ -23,6 +23,7 @@ async function sortear() {
 
 
     console.log(min, max)
+    
     if (Number(max) > Number(min)) {
         const array = [min, max, email];
         const result = await fetch("http://localhost:1234/numeros", {

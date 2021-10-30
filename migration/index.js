@@ -27,11 +27,17 @@ async function up() {
       FOREIGN KEY (email) REFERENCES usuario(email)
     );`
 
+  
+
+    const sql4 = `
+      INSERT INTO sorteio (tipo, resultado) VALUES ("blank", "blank")
+    `
   const db = await conn();
 
   await db.run(sql)
   await db.run(sql2)
   await db.run(sql3)
+  await db.run(sql4)
 
 }
 

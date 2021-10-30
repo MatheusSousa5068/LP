@@ -37,16 +37,10 @@ const sorteioNum = async (req, res) => {
     console.log(sort)
 
     const idJson = await readLastId()
-    console.log(idJson)
-    if (idJson == []) {
-        const id = 0
+   
+    const id = idJson[0].id
+    sorteio(tipo, sort, id, email)
 
-        sorteio(tipo, sort, id, email)
-    } else {
-        const id = idJson[0].id
-
-        sorteio(tipo, sort, id, email)
-    }
 
 
 
